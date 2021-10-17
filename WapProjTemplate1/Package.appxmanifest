@@ -41,7 +41,7 @@
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
-        <desktop:Extension Category="windows.fullTrustProcess" Executable="WorkerService1\WorkerService1.exe" />
+        <desktop:Extension Category="windows.fullTrustProcess" Executable="ConsoleApp1\ConsoleApp1.exe" />
       </Extensions>
     </Application>
   </Applications>

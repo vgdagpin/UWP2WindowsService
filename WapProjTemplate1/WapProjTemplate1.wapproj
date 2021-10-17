@@ -77,6 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App1\App1.csproj" />
-    <ProjectReference Include="..\WorkerService1\WorkerService1.csproj" />
+    <ProjectReference Include="..\ConsoleApp1\ConsoleApp1.csproj" />
   </ItemGroup>
 </Project>
