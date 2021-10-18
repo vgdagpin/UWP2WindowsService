@@ -6,9 +6,11 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.AppService;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,6 +31,14 @@ namespace App1
         private NamedPipeClientStream pipeClient;
         public ObservableCollection<string> Messages { get; set; } = new ObservableCollection<string>();
 
+        public string FamilyName
+        {
+            get
+            {
+                return Package.Current.Id.FamilyName;
+            }
+        }
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -40,30 +50,33 @@ namespace App1
         {
             if (ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0))
             {
+                ApplicationData.Current.LocalSettings.Values["param1"] = FamilyName;
+
                 Messages.Add("Starting service..");
                 await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
 
-                pipeClient = new NamedPipeClientStream
-                    (
-                        @".",
-                        "TestPipe",
-                        PipeDirection.InOut,
-                        PipeOptions.None,
-                        System.Security.Principal.TokenImpersonationLevel.Impersonation
-                    );
+
 
 
                 Messages.Add("Service started");
             }
         }
 
-        private void ConnectPipe()
+        private async void ConnectPipe()
         {
             try
             {
                 Messages.Add("Connecting..");
 
-                pipeClient.Connect();
+                ValueSet valueSet = new ValueSet();
+                valueSet.Add("request", MessageToSend.Text);
+
+                if (App.Connection != null)
+                {
+                    AppServiceResponse response = await App.Connection.SendMessageAsync(valueSet);
+                    MessageRecevied.Text = "Received response: " + response.Message["response"] as string;
+                }
+
 
                 Messages.Add("Connected");
             }
