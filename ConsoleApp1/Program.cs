@@ -12,17 +12,18 @@ namespace ConsoleApp1
     class Program
     {
         static AppServiceConnection connection = null;
+        static string PackageFamilyName = null;
+        static string AppServiceName = "ComTestService";
 
 
         static void Main(string[] args)
         {
+            PackageFamilyName = ApplicationData.Current.LocalSettings.Values["param1"]?.ToString();
 
-            Thread appServiceThread = new Thread(new ThreadStart(ThreadProc));
-            appServiceThread.Start();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("*****************************");
-            Console.WriteLine("**** Classic desktop app ****");
-            Console.WriteLine("*****************************");
+            new Thread(new ThreadStart(ThreadProc)).Start();
+
+            Console.WriteLine($"Connecting to {PackageFamilyName} : {AppServiceName}");
+
             Console.ReadLine();
         }
 
@@ -31,14 +32,17 @@ namespace ConsoleApp1
         /// </summary>
         static async void ThreadProc()
         {
-            var famName = ApplicationData.Current.LocalSettings.Values["param1"];
+            connection = new AppServiceConnection
+            {
+                AppServiceName = AppServiceName,
+                PackageFamilyName = PackageFamilyName
+            };
 
-            connection = new AppServiceConnection();
-            connection.AppServiceName = "ComTestService";
-            connection.PackageFamilyName = famName.ToString();
             connection.RequestReceived += Connection_RequestReceived;
 
             AppServiceConnectionStatus status = await connection.OpenAsync();
+            Console.WriteLine();
+
             switch (status)
             {
                 case AppServiceConnectionStatus.Success:

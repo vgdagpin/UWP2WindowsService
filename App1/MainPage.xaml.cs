@@ -53,6 +53,7 @@ namespace App1
                 ApplicationData.Current.LocalSettings.Values["param1"] = FamilyName;
 
                 Messages.Add("Starting service..");
+
                 await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
 
 
@@ -62,7 +63,7 @@ namespace App1
             }
         }
 
-        private async void ConnectPipe()
+        private async void SendMessage()
         {
             try
             {
@@ -74,7 +75,7 @@ namespace App1
                 if (App.Connection != null)
                 {
                     AppServiceResponse response = await App.Connection.SendMessageAsync(valueSet);
-                    MessageRecevied.Text = "Received response: " + response.Message["response"] as string;
+                    MessageRecevied.Text = "Received response: " + response.Message["response"];
                 }
 
 

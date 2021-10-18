@@ -9,22 +9,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        
-        
         <StackPanel Margin="50">
+            <TextBlock Text="PackageFamilyName" />
             <TextBox Text="{x:Bind FamilyName}" />
-            <TextBox x:Name="MessageToSend" Width="90" />
+
+
+            <TextBlock Text="Message:" Margin="0 20 0 0" />
+            <TextBox x:Name="MessageToSend" Text="Hello" />
+
+
+            <Button Click="{x:Bind StartService}" Margin="0 10 0 0">Open Console</Button>
+            <Button Click="{x:Bind SendMessage}" Margin="0 10 0 10">Send Message</Button>
 
             <TextBlock x:Name="MessageRecevied" Text="Received response: "/>
 
 
-            <Button Click="{x:Bind StartService}" Margin="0 0 0 10">Start Service</Button>
-            <Button Click="{x:Bind ConnectPipe}" Margin="0 0 0 10">Connect</Button>
-
-            <ListView   Height="400"
-                    ItemsSource="{x:Bind Messages}"
-                    SelectionMode="None">
-            </ListView>
+            <ListView Height="400" ItemsSource="{x:Bind Messages}" SelectionMode="None"></ListView>
         </StackPanel>
     </Grid>
 </Page>
