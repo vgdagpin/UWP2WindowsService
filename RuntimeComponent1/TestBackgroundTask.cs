@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
 
-namespace App1
+namespace RuntimeComponent1
 {
     public sealed class TestBackgroundTask : IBackgroundTask
     {
