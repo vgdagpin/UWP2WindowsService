@@ -9,14 +9,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ListView   Height="400"
-                    ItemsSource="{x:Bind Messages}"
-                    SelectionMode="None">
-        </ListView>
         
-        <StackPanel>
+        
+        <StackPanel Margin="50">
+            <TextBox Text="{x:Bind FamilyName}" />
+            <TextBox x:Name="MessageToSend" Width="90" />
+
+            <TextBlock x:Name="MessageRecevied" Text="Received response: "/>
+
+
             <Button Click="{x:Bind StartService}" Margin="0 0 0 10">Start Service</Button>
             <Button Click="{x:Bind ConnectPipe}" Margin="0 0 0 10">Connect</Button>
+
+            <ListView   Height="400"
+                    ItemsSource="{x:Bind Messages}"
+                    SelectionMode="None">
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>
