@@ -159,12 +159,6 @@
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RuntimeComponent1\RuntimeComponent1.csproj">
-      <Project>{b50578d8-eba7-4c37-9500-ab30daf41e36}</Project>
-      <Name>RuntimeComponent1</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

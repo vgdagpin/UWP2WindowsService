@@ -43,8 +43,8 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
-        <desktop:Extension Category="windows.fullTrustProcess" Executable="ConsoleApp1\ConsoleApp1.exe" />
-        <uap:Extension Category="windows.appService" EntryPoint="RuntimeComponent1.TestBackgroundTask">
+        <desktop:Extension Category="windows.fullTrustProcess" Executable="WinFormsApp1\WinFormsApp1.exe" />
+        <uap:Extension Category="windows.appService">
           <uap:AppService Name="ComTestService"/>
         </uap:Extension>
       </Extensions>

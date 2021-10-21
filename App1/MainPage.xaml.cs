@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.AppService;
+using Windows.ApplicationModel.Background;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
@@ -57,8 +58,6 @@ namespace App1
                 await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
 
 
-
-
                 Messages.Add("Service started");
             }
         }
@@ -67,7 +66,6 @@ namespace App1
         {
             try
             {
-                Messages.Add("Connecting..");
 
                 ValueSet valueSet = new ValueSet();
                 valueSet.Add("request", MessageToSend.Text);
@@ -78,8 +76,6 @@ namespace App1
                     MessageRecevied.Text = "Received response: " + response.Message["response"];
                 }
 
-
-                Messages.Add("Connected");
             }
             catch (Exception ex)
             {

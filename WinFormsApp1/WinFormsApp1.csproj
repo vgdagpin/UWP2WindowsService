@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
-    <ApplicationIcon />
-    <StartupObject />
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +11,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y /s &quot;$(SolutionDir)ConsoleApp1\bin\$(ConfigurationName)\net5.0-windows10.0.19041.0\*.*&quot; &quot;$(SolutionDir)\App1\bin\x86\$(ConfigurationName)\AppX\ConsoleApp1\&quot;" />
+    <Exec Command="xcopy /y /s &quot;$(SolutionDir)WinFormsApp1\bin\$(ConfigurationName)\net5.0-windows10.0.19041.0\*.*&quot; &quot;$(SolutionDir)\App1\bin\x86\$(ConfigurationName)\AppX\WinFormsApp1\&quot;" />
   </Target>
 
 </Project>
